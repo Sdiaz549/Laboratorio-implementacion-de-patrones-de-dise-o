@@ -1,0 +1,26 @@
+---
+config:
+  theme: neo
+---
+flowchart TD
+    A([Inicio]) --> B[El estudiante ingresa sus datos]
+    B --> C[Registra fecha, hora y duración]
+    C --> D[Indica la cantidad de personas]
+    D --> E[El sistema consulta las salas disponibles]
+    E --> F{¿Hay una sala adecuada?}
+
+    F -- No --> G[Informar que no hay salas disponibles]
+    G --> Z([Fin])
+
+    F -- Sí --> H[Strategy: seleccionar la sala]
+    H --> I[Builder: construir la reserva]
+    I --> J[Validar los datos de la reserva]
+    J --> K{¿Los datos son correctos?}
+
+    K -- No --> L[Informar errores en la solicitud]
+    L --> Z
+
+    K -- Sí --> M[Facade: coordinar el registro de la reserva]
+    M --> N[State: gestionar el estado de la reserva]
+    N --> O[Observer: notificar al estudiante]
+    O --> Z
